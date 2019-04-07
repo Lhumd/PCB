@@ -6,6 +6,7 @@
 #define OS1_HEAP_H
 
 #include <vector>
+#include "process.h"
 
 // Heap Class to control all methods associated with the heap tree.
 class Heap

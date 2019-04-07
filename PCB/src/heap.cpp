@@ -2,14 +2,12 @@
 // Created by lhum on 4/7/19.
 //
 
-#include "heap.h"
-
-
+#include "../include/heap.h"
 
 // Insert Process will add a new process into the queue
 void Heap::insert(Process newProcess)
 {
-    newProcess.status = "READY";        // Updates status of the process
+    newProcess.setStatus("READY");        // Updates status of the process
     heap.push_back(newProcess);         // Push the process to the rear of the queue
     heapifyup(heap.size() - 1);         // Heapify the new tree
 }
@@ -17,8 +15,8 @@ void Heap::insert(Process newProcess)
 // DeleteMin function that will delete the process with the highest priority.
 int Heap::deletemin()
 {
-    int min = heap.front().processId;   // Grab the existing minimum process
-    heap.front().status = "RUNNING";    // Update the status of the process being removed
+    int min = heap.front().getProcessId();   // Grab the existing minimum process
+    heap.front().setStatus("RUNNING");    // Update the status of the process being removed
     heap[0] = heap.at(heap.size() - 1);
     heap.pop_back();                    // Remove the highest priority from queue
     heapifydown(0);                     // Heapify the new tree
@@ -29,7 +27,8 @@ int Heap::deletemin()
 void Heap::ageQueue()
 {
     for(int x = 0; x < heap.size(); x++){
-        heap[x].priority = heap[x].priority-1;}
+        heap[x].setPriority(heap[x].getPriority()-1);
+    }
 }
 
 // Print function will print the queue.
@@ -38,9 +37,9 @@ void Heap::print()
     cout << "ReadyQueue: ";
     for(int i = 0; i < heap.size(); i++)
     {
-        cout << heap[i].processId << ":";
-        cout << heap[i].priority << ":";
-        cout << heap[i].status << " ";
+        cout << heap[i].getProcessId() << ":";
+        cout << heap[i].getPriority() << ":";
+        cout << heap[i].getStatus() << " ";
     }
     cout << endl;
 }
@@ -49,7 +48,7 @@ void Heap::print()
 bool Heap::checkExists(int randProc)
 {
     for(int x = 0; x < heap.size(); x++){
-        if(randProc == heap[x].processId)  // If the process exists in the queue
+        if(randProc == heap[x].getProcessId())  // If the process exists in the queue
             return true;}                    // return true
     return false;                        // Otherwise, return false
 }
@@ -58,7 +57,7 @@ bool Heap::checkExists(int randProc)
 void Heap::heapifyup(int index)
 {
     while((index>0)&&(parent(index)>=0)&&
-          (heap[parent(index)].priority>heap[index].priority))
+          (heap[parent(index)].getPriority()>heap[index].getPriority()))
     {
         Process tmp = heap[parent(index)];  // Grab the parent process
         heap[parent(index)] = heap[index];  // Set parent process to index process
@@ -74,11 +73,11 @@ void Heap::heapifydown(int index)
     l = left(index);                        // Grab left child priority
     r = right(index);                       // Grab right child priority
     int heapSize = heap.size();             // Grab the size of the heap
-    if((l <= heapSize) && (heap[l].priority <= heap[index].priority))
+    if((l <= heapSize) && (heap[l].getPriority() <= heap[index].getPriority()))
         min = l;                              // Set mimumum to left child
     else
         min = index;                          // Set minimum to index
-    if((r <= heapSize) && (heap[r].priority <= heap[min].priority))
+    if((r <= heapSize) && (heap[r].getPriority() <= heap[min].getPriority()))
         min = r;                              // Set minimum to right child
     if(min != index)
     {
