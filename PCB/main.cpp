@@ -1,34 +1,11 @@
-//==============================================================================
-//                            PROCESS CONTROL BLOCK
-// Names: Jeff Henry, Natalie Lotz
-// File Type: .cpp
-// How to compile: Type make in the unix command window. This will run the 
-//                 makeFile document and construct the executable.
-// How to run:     Type ./minHeap.exe in the unix command window. The User will 
-//                 be prompted to run test case 1 or 2. Test case 1 contains a
-//                 hardcoded example of processes entering the readyQueue. Test 
-//                 case 2 processes 1,000,000 process's through the readyQueue 
-//                 and outputs the total time taken to handle all processes.
-//==============================================================================
-
 #include <iostream>
 #include <vector>
 #include <iterator>
 #include <time.h>        // Used for Timer
 #include <ctime>         // Used for randomization
-#include <cstdlib>
+#include "process.h"
 
 using namespace std;
-
-// Process class to control all variables associated with an individual process
-class Process{
-public:
-    // Individual Process variables
-    int processId;
-    int priority;
-    string status;
-    Process(){processId = priority = 0; status = "NEW";} // Initialize the process
-};
 
 // Heap Class to control all methods associated with the heap tree.
 class Heap
@@ -135,7 +112,7 @@ void Heap::heapifydown(int index)
     }
 }
 
-// Left function will return the left child of the parent 
+// Left function will return the left child of the parent
 int Heap::left(int parent)
 {
     int i = ( parent << 1 ) + 1;            // Left Child is  2 * parent + 1
