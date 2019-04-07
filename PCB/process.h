@@ -5,23 +5,27 @@
 #ifndef PCB_PROCESS_H
 #define PCB_PROCESS_H
 
-#include <iostream>
-
 using namespace std;
+
+enum Status {
+    NEW = 0,
+    RUNNING = 1,
+    READY = 2
+};
 
 class Process{
 public:
     Process();
     int getProcessId();
     int getPriority();
-    string getStatus();
+    Status getStatus();
     void setProcessId(int);
     void setPriority(int);
-    void setStatus(string);
+    void setStatus(Status);
 private:
     int processId;
     int priority;
-    string status;
+    Status status;
 };
 
 
