@@ -79,7 +79,7 @@ void Heap::heapifydown(int index)
         min = index;                          // Set minimum to index
     if((r <= heapSize) && (heap[r].getPriority() <= heap[min].getPriority()))
         min = r;                              // Set minimum to right child
-    if(min != index)
+    if(min != index && min != -1)
     {
         Process t = heap[min];              // Create a process to hold the minimum process
         heap[min] = heap[index];            // Reassign minimum to index process
