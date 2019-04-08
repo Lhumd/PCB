@@ -7,7 +7,7 @@
 // Insert Process will add a new process into the queue
 void Heap::insert(Process newProcess)
 {
-    newProcess.setStatus("READY");        // Updates status of the process
+    newProcess.setStatus(Status :: READY);        // Updates status of the process
     heap.push_back(newProcess);         // Push the process to the rear of the queue
     heapifyup(heap.size() - 1);         // Heapify the new tree
 }
@@ -16,7 +16,7 @@ void Heap::insert(Process newProcess)
 int Heap::deletemin()
 {
     int min = heap.front().getProcessId();   // Grab the existing minimum process
-    heap.front().setStatus("RUNNING");    // Update the status of the process being removed
+    heap.front().setStatus(Status :: READY);    // Update the status of the process being removed
     heap[0] = heap.at(heap.size() - 1);
     heap.pop_back();                    // Remove the highest priority from queue
     heapifydown(0);                     // Heapify the new tree

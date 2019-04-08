@@ -24,7 +24,7 @@ int main()
         Process newProc;
         newProc.setProcessId(i);
         newProc.setPriority(i);
-        newProc.setStatus("NEW");
+        newProc.setStatus(Status :: NEW);
         pcb_Table[i]= newProc;
     }
     // Create the heap tree

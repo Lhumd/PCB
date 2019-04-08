@@ -5,6 +5,7 @@
 #ifndef OS1_HEAP_H
 #define OS1_HEAP_H
 
+#include <iostream>
 #include <vector>
 #include "process.h"
 
