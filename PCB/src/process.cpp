@@ -6,7 +6,7 @@
 Process::Process()
 {
     processId = priority = 0;
-    status = "NEW";
+    status = Status :: NEW;
 }
 int Process::getProcessId(){
     return processId;
@@ -14,7 +14,7 @@ int Process::getProcessId(){
 int Process::getPriority(){
     return priority;
 }
-string Process::getStatus(){
+Status Process::getStatus(){
     return status;
 }
 
@@ -24,6 +24,6 @@ void Process::setProcessId(int pid){
 void Process::setPriority(int pri){
     priority = pri;
 }
-void Process::setStatus(string st){
+void Process::setStatus(Status st){
     status = st;
 }
